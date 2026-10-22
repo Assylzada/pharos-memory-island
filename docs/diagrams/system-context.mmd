@@ -1,0 +1,19 @@
+
+flowchart TB
+    User(["User"])
+
+    subgraph Pharos["Pharos — Memory Island Application"]
+        App["Flutter / Dart Mobile App"]
+    end
+
+    Backend["FastAPI Backend"]
+    DB[("PostgreSQL Database")]
+    AI["Optional AI/ML Service"]
+
+    User <-->|"Creates and explores memories"| App
+    App <-->|"HTTPS / JSON API"| Backend
+    Backend <-->|"Read / Write Data"| DB
+    Backend -.->|"Optional suggestions"| AI
+
+    classDef optional stroke-dasharray: 5 5
+    class AI optional
