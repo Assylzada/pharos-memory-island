@@ -1,0 +1,38 @@
+
+flowchart LR
+    User(["User"])
+
+    subgraph Pharos["Pharos Application"]
+        direction TB
+
+        subgraph Memories["Memory Management"]
+            UC1(["Create Memory"])
+            UC2(["View Memories"])
+            UC3(["View Memory Details"])
+            UC4(["Edit Memory"])
+            UC5(["Delete Memory"])
+        end
+
+        subgraph Island["Virtual Island"]
+            UC6(["Explore Island"])
+            UC7(["Select Island Object"])
+            UC8(["Open Related Memory"])
+        end
+
+        UC9(["Receive Memory Suggestions"])
+    end
+
+    User --- UC1
+    User --- UC2
+    User --- UC3
+    User --- UC4
+    User --- UC5
+    User --- UC6
+    User --- UC7
+    User --- UC9
+
+    UC7 --> UC8
+    UC9 -.-> UC2
+
+    classDef optional stroke-dasharray: 5 5
+    class UC9 optional
