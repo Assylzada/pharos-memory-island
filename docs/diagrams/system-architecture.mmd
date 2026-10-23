@@ -1,0 +1,41 @@
+
+flowchart TB
+    User(["User"])
+
+    subgraph Mobile["Presentation Layer"]
+        direction TB
+        UI["Flutter / Dart Mobile App"]
+        MemoryUI["Memory Management UI"]
+        IslandUI["Interactive Virtual Island"]
+        Feedback["Validation and User Feedback"]
+
+        UI --> MemoryUI
+        UI --> IslandUI
+        UI --> Feedback
+    end
+
+    subgraph Backend["Application Layer"]
+        direction TB
+        API["FastAPI REST API"]
+        Validation["Request Validation"]
+        MemoryService["Memory Management Logic"]
+        IslandService["Island Object Logic"]
+        DataAccess["Data Access Layer"]
+
+        API --> Validation
+        Validation --> MemoryService
+        Validation --> IslandService
+        MemoryService --> DataAccess
+        IslandService --> DataAccess
+    end
+
+    DB[("PostgreSQL Database")]
+    AI["Optional AI/ML Suggestions"]
+
+    User --> UI
+    UI <-->|"HTTPS / JSON API"| API
+    DataAccess <-->|"Database Queries"| DB
+    MemoryService -.->|"Optional future integration"| AI
+
+    classDef optional stroke-dasharray: 5 5
+    class AI optional

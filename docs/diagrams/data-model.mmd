@@ -1,0 +1,31 @@
+
+erDiagram
+    MEMORY ||--|| ISLAND_OBJECT : "represented by"
+    MEMORY ||--o{ MEDIA_ATTACHMENT : "may contain"
+
+    MEMORY {
+        uuid id PK
+        string title
+        text content
+        datetime memory_date
+        datetime created_at
+        datetime updated_at
+    }
+
+    ISLAND_OBJECT {
+        uuid id PK
+        uuid memory_id FK
+        string object_type
+        float position_x
+        float position_y
+        float position_z
+    }
+
+    MEDIA_ATTACHMENT {
+        uuid id PK
+        uuid memory_id FK
+        string file_name
+        string media_type
+        string storage_path
+        datetime uploaded_at
+    }
